@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index",
+  "main": "index.js",
   "scripts": {
     "build": "tsc",
     "clean": "rimraf dist",
-    "start": "npm run build && node dist/index",
+    "start": "npm run build && node dist/index.js",
     "dev": "nodemon src/index.ts"
   },
   "keywords": [],
