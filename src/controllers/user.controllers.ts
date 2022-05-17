@@ -10,7 +10,7 @@ export async function getUsers(req: any, res: Response): Promise<Response> {
         ok: true,
         users,
         uid: req.uid
-    })
+    });
 }
 
 export async function getUser(req: Request, res: Response): Promise<Response> {
@@ -19,7 +19,6 @@ export async function getUser(req: Request, res: Response): Promise<Response> {
     // console.log(req.params.id)
     return res.json(user)
 }
-
 
 export async function createuser(req: Request, res: Response): Promise<Response> {
     const { email, password } = req.body
@@ -43,9 +42,6 @@ export async function createuser(req: Request, res: Response): Promise<Response>
         //Encrypt password
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(password, salt)
-
-        
-
 
         console.log("password", user.password)
 
