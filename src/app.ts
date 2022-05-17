@@ -5,11 +5,11 @@ import cors from 'cors';
 
 
 const app = express();
-import indexRoutes  from './routes/index';
-import productRoutes  from './routes/product.routes';
+import indexRoutes from './routes/index';
+import productRoutes from './routes/product.routes';
 import saleRoutes from './routes/sale.routes';
 import userRoutes from "./routes/user.routes";
-import loginRoutes  from "./routes/login.routes";
+import loginRoutes from "./routes/login.routes";
 import findAllRoutes from "./routes/findAll.routes";
 
 //settings
@@ -36,6 +36,9 @@ app.use('/api', findAllRoutes)
 //this folder for this app will be used to store public files
 app.use('/uploads', express.static(path.resolve('uploads')));
 
+app.use(function (err: any, req: any, res: any, next: any) {
+    res.status(err.status || 500).json(res.error(err.status || 500));
+});
 
 export default app;
 
