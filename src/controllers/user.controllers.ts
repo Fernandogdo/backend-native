@@ -107,14 +107,13 @@ export async function updateduser(req: Request, res: Response): Promise<Response
         res.status(500).json({
             ok: false,
             msg: 'Error inesperado'
-        })
+        });
     }
 
     return res.json({
         ok: true,
         updateduser
-    })
-
+    });
 }
 
 
