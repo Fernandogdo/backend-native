@@ -37,7 +37,6 @@ export async function createuser(req: Request, res: Response): Promise<Response>
         }
 
         user = new User(req.body)
-        // await user.save();
 
         //Encrypt password
         const salt = bcrypt.genSaltSync();
@@ -46,7 +45,6 @@ export async function createuser(req: Request, res: Response): Promise<Response>
         console.log("password", user.password)
 
         await user.save()
-
         token = await generateJWT(user.id);
 
 

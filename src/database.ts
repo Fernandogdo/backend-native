@@ -7,5 +7,5 @@ export async function startConnection() {
         })
         .catch(error => {
             console.log('error', error)
-        })
+        });
 }
