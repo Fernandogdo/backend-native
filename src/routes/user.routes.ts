@@ -6,7 +6,6 @@ import validateFields from "../middlewares/validate-fields";
 import { validateJWT } from "../middlewares/validate-jwt";
 
 import { getUsers, getUser, createuser, deleteUser, updateduser } from "../controllers/user.controllers";
-import multer from '../libs/multer'
 
 router.route('/users')
     .get(

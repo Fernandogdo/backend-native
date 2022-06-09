@@ -37,7 +37,7 @@ export async function login(req: Request, res: Response): Promise<Response> {
 
         //Generate TOKEN - JWT
         token = await generateJWT(userDB.id);
-        console.log("🚀 ~ file: auth.controller.ts ~ line 40 ~ login ~ token", token)
+        // console.log("🚀 ~ file: auth.controller.ts ~ line 40 ~ login ~ token", token)
 
 
         if (userDB.role !== 'ADMIN_ROLE') {

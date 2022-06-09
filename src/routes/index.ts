@@ -17,7 +17,9 @@ router.route('/categories/:id')
         validateJWT,
         getCategory
     )
-    .delete(deleteCategory)
+    .delete(
+        validateJWT,
+        deleteCategory)
     .put(
         validateJWT,
         updatedCategory

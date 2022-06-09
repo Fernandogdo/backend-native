@@ -2,6 +2,13 @@ import {Request, Response} from 'express'
 import  Product  from '../models/Product'
 import path  from 'path'; 
 import fs from 'fs-extra';
+import cloudinary from "cloudinary";
+
+cloudinary.v2.config({
+    cloud_name: 'dhpsdeqwi',
+    api_key: '554281482924474',
+    api_secret: 'gThcPFC0L7tFb38fSvG7NlHA-K0',
+})
 // import { setTokenSourceMapRange } from 'typescript';
 
 export async function getProducts(req:Request, res:Response): Promise<Response>{
@@ -20,7 +27,10 @@ export async function getProduct(req:Request, res:Response): Promise<Response>{
 export async function createProduct(req:Request, res:Response){
     
     const { title, category, description, price, stock } = req.body
+    const file:any = req.file?.path
     
+    const result = await cloudinary.v2.uploader.upload(file)
+
     // console.log("category", category)
     const newPhoto = {
         title: title,
@@ -28,11 +38,13 @@ export async function createProduct(req:Request, res:Response){
         description: description,
         price: price,
         stock: stock,
-        imagePath: req.file?.path
+        imagePath: result.url
     }
+
     const product = new Product(newPhoto);
 
     await product.save();
+    await fs.unlink(file)
 
     return res.json({
         message: "creado correcto",
@@ -44,9 +56,9 @@ export async function createProduct(req:Request, res:Response){
 export async function deleteProduct(req: Request, res: Response): Promise<Response>{
     const { id } = req.params;
     const product = await Product.findByIdAndRemove(id);
-    if (product){
-        fs.unlink(path.resolve(product.imagePath))
-    }
+    // if (product){
+    //     fs.unlink(path.resolve(product.imagePath))
+    // }
     return res.json({
         message: "Product deleted",
         product

@@ -10,7 +10,7 @@ export async function getUsers(req: any, res: Response): Promise<Response> {
         ok: true,
         users,
         uid: req.uid
-    });
+    })
 }
 
 export async function getUser(req: Request, res: Response): Promise<Response> {
@@ -19,6 +19,7 @@ export async function getUser(req: Request, res: Response): Promise<Response> {
     // console.log(req.params.id)
     return res.json(user)
 }
+
 
 export async function createuser(req: Request, res: Response): Promise<Response> {
     const { email, password } = req.body
@@ -37,14 +38,19 @@ export async function createuser(req: Request, res: Response): Promise<Response>
         }
 
         user = new User(req.body)
+        // await user.save();
 
         //Encrypt password
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(password, salt)
 
+        
+
+
         console.log("password", user.password)
 
         await user.save()
+
         token = await generateJWT(user.id);
 
 
@@ -107,13 +113,14 @@ export async function updateduser(req: Request, res: Response): Promise<Response
         res.status(500).json({
             ok: false,
             msg: 'Error inesperado'
-        });
+        })
     }
 
     return res.json({
         ok: true,
         updateduser
-    });
+    })
+
 }
 
 
