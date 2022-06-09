@@ -16,6 +16,7 @@ export async function getCategories(req: Request, res: Response): Promise<Respon
     return res.json(categories)
 }
 
+
 export async function getCategory(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const category = await Category.findById(id)
