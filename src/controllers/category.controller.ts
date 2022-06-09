@@ -70,11 +70,12 @@ export async function deleteCategory(req: Request, res: Response): Promise<Respo
 
 export async function updatedCategory(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    const { title, description } = req.body;
+    const { title, description, imagePath } = req.body;
     console.log(req.body)
     const updatedCategory = await Category.findByIdAndUpdate(id, {
         title,
-        description
+        description,
+        imagePath
     }, { new: true });
 
     return res.json({
