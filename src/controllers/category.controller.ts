@@ -2,7 +2,6 @@ import { Request, Response } from 'express'
 import Category from '../models/Category'
 import path from 'path';
 import fs from 'fs-extra';
-import {uploadFile, getFileStream} from '../s3';
 import cloudinary from "cloudinary";
 // import uploadFile from "../s3";
 cloudinary.v2.config({
@@ -20,11 +19,7 @@ export async function getCategories(req: Request, res: Response): Promise<Respon
 export async function getCategory(req: Request, res: Response): Promise<Response> {
     const { id } = req.params
     const category = await Category.findById(id)
-    console.log('category', category, res)
-    const readStream = getFileStream('8fe2a3e7-6218-4a66-9a99-c60d363d781c.jpeg')
-    
-    console.log("readStream", readStream)
-    readStream.pipe(res)
+  
     return res.json(category)
 }
 
