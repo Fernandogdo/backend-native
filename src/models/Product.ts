@@ -1,5 +1,4 @@
 import { Schema, model, Document, Types } from "mongoose";
-import Category from "./Category";
 
 // type ID = Types.ObjectId
 
@@ -8,17 +7,10 @@ const ProductSchema = new Schema({
     category: {type: Schema.Types.ObjectId, ref:'Category', required: true},
     description: String,
     price: Number,
+    purchase_price: {type:String, default: 5}, 
     stock: Number,
     imagePath: String
 });
-
-// interface IProduct extends Document {
-//     title: string;
-//     category: ID;
-//     descriptions: string;
-//     imagePath: string;
-//     price: number;
-// }
 
 
 ProductSchema.method('toJSON', function(){

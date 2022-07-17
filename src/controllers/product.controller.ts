@@ -1,6 +1,5 @@
 import {Request, Response} from 'express'
 import  Product  from '../models/Product'
-import path  from 'path'; 
 import fs from 'fs-extra';
 import cloudinary from "cloudinary";
 
@@ -26,7 +25,8 @@ export async function getProduct(req:Request, res:Response): Promise<Response>{
 
 export async function createProduct(req:Request, res:Response){
     
-    const { title, category, description, price, stock } = req.body
+    const { title, category, description, price, purchase_price, stock } = req.body
+    console.log(req.body);
     const file:any = req.file?.path
     
     const result = await cloudinary.v2.uploader.upload(file)
@@ -37,6 +37,7 @@ export async function createProduct(req:Request, res:Response){
         category: category,
         description: description,
         price: price,
+        purchase_price: purchase_price,
         stock: stock,
         imagePath: result.url
     }
@@ -68,13 +69,14 @@ export async function deleteProduct(req: Request, res: Response): Promise<Respon
 
 export async function updatedProduct(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    const {title, category, description, price, stock } = req.body;
+    const {title, category, description, price, purchase_price, stock } = req.body;
     // console.log("editado", req.body)
     const updatedProduct = await Product.findByIdAndUpdate(id, {
         title,
         category,
         description,
         price,
+        purchase_price,
         stock
     }, {new: true});
 
