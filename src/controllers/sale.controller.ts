@@ -16,7 +16,7 @@ export async function getSale(req:Request, res:Response): Promise<Response>{
 }
 
 export async function createSale(req:Request, res:Response): Promise<Response>{
-    const { title, description, date, month, total, products} = req.body
+    const { title, description, date, month, total, total_spends, products} = req.body
     console.log(req.body.products)
     const newPhoto = {
         title: title,
@@ -24,6 +24,7 @@ export async function createSale(req:Request, res:Response): Promise<Response>{
         date: date,
         month: month,
         total: total,
+        total_spends: total_spends,
         products: products
         // imagePath: req.file?.path
     };
