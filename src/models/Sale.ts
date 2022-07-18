@@ -1,14 +1,12 @@
 import { Schema, model, Document } from "mongoose";
-import Product from "./Product";
-
-
 
 const SaleSchema = new Schema({
     title: { type:String, required: true},
     description: { type:String, required: true},
     date: { type:Date, required: true},
     month: {type:String, default: 'Enero'},
-    total: {type:Number, default: 0},
+    total_sale: {type:Number, default: 0},
+    total_spends: {type:Number, default: 0},
     year: {type: Number, default: 2022},
     products: [
         { 
