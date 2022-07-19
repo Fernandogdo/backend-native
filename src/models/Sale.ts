@@ -12,6 +12,7 @@ const SaleSchema = new Schema({
         { 
             title: { type:String, required: true},
             price: { type:Number, required: true},
+            purchase_price: {type:Number, required: true, default: 0},
             quantity: {type: Number, required: true},
         }
     ]
