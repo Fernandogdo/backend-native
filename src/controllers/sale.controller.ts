@@ -58,11 +58,13 @@ export async function deleteSale(req: Request, res: Response): Promise<Response>
 
 export async function updatedSale(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    const {title, description, month} = req.body;
+    const {title, description, total_spends, products, month} = req.body;
     console.log(req.body)
     const updatedSale = await Sale.findByIdAndUpdate(id, {
         title,
         description,
+        total_spends,
+        products,
         month
     }, {new: true});
 
