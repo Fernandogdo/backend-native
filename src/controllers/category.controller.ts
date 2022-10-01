@@ -11,6 +11,7 @@ cloudinary.v2.config({
 })
 
 export async function getCategories(req: Request, res: Response): Promise<Response> {
+    
     const categories = await Category.find();
     return res.json(categories)
 }
