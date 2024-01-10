@@ -8,9 +8,6 @@ export const validateJWT = (req: any, res = response, next: any) => {
 
     const token = req.header('x-token')
 
-    // console.log("token", token)
-
-    // let uid;
     const JWT_SECRET = 'pxndx17janeth1998ta1992@'
 
 
@@ -38,9 +35,6 @@ export const validateJWT = (req: any, res = response, next: any) => {
             msg: 'Token not valid'
         })
     }
-
-    
-
 }
 
 

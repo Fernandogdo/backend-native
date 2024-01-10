@@ -1,5 +1,8 @@
 import { connect } from "mongoose";
 
+
+
+// Expected output: 1969
 export async function startConnection() {
     await connect('mongodb+srv://fernandogdo:pxndxsux17@cluster0.l8xmi.mongodb.net/?retryWrites=true&w=majority')
         .then(db => {
@@ -10,6 +13,7 @@ export async function startConnection() {
         })
 }
 
+// mongodb+srv://fernandogdo:<password>@cluster0.l8xmi.mongodb.net/?retryWrites=true&w=majority
 
 // import { connect } from "mongoose";
 

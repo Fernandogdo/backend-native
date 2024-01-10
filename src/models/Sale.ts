@@ -1,5 +1,8 @@
 import { Schema, model, Document } from "mongoose";
 
+var today = new Date();
+var year = today.getFullYear();
+
 const SaleSchema = new Schema({
     title: { type:String, required: true},
     description: { type:String, required: true},
@@ -7,7 +10,7 @@ const SaleSchema = new Schema({
     month: {type:String, default: 'Enero'},
     total: {type:Number, default: 0},
     total_spends: {type:Number, default: 0},
-    year: {type: Number, default: 2022},
+    year: {type: Number, default: year},
     products: [
         { 
             title: { type:String, required: true},
